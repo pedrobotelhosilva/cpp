@@ -1,4 +1,4 @@
-#include "Convert.hpp"
+#include "ScalarConverter.hpp"
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     
-    Convert c(argv[1]);
+    ScalarConverter c(argv[1]);
     
     try {
         c.printOutput();

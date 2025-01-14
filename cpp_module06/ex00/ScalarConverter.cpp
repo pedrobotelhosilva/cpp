@@ -1,32 +1,40 @@
-#include "Convert.hpp"
+#include "ScalarConverter.hpp"
 
-Convert::Convert(std::string input): _input(input) {}
+ScalarConverter::ScalarConverter(std::string input): _input(input)
+{
 
-Convert::Convert(Convert const & src)
+}
+
+ScalarConverter::ScalarConverter(ScalarConverter const & src)
 {
     *this = src;
 }
 
-Convert & Convert::operator=(Convert const & ref)
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const & ref)
 {
     if (this != &ref)
         this->_input = ref._input;
     return *this;
 }
 
-Convert::~Convert() {}
+ScalarConverter::~ScalarConverter()
+{
 
-std::string Convert::getInput() const {
+}
+
+std::string ScalarConverter::getInput() const
+{
     return this->_input;
 }
 
-std::string Convert::to_string(double d) {
+std::string ScalarConverter::to_string(double d)
+{
     std::ostringstream s;
     s << d;
     return s.str();
 }
 
-bool Convert::checkNumber(std::string const s)
+bool ScalarConverter::checkNumber(std::string const s)
 {
     if((s.find_first_of(".") != s.find_last_of(".") && (isdigit(s[s.find_first_of(".") + 1]) == false))||
         s.find_first_of(".") == 0 ||
@@ -47,7 +55,7 @@ bool Convert::checkNumber(std::string const s)
         return false;
 }
 
-bool Convert::checkLetters(std::string const s)
+bool ScalarConverter::checkLetters(std::string const s)
 {
     for (long unsigned int i = 0; i < s.length(); i++)
     {
@@ -65,7 +73,7 @@ bool Convert::checkLetters(std::string const s)
     return false;
 }
 
-bool Convert::checkLiteral(std::string const s, int type)
+bool ScalarConverter::checkLiteral(std::string const s, int type)
 {
     switch (type)
     {
@@ -86,7 +94,7 @@ bool Convert::checkLiteral(std::string const s, int type)
     return false;
 }
 
-void Convert::printOutput(void)
+void ScalarConverter::printOutput(void)
 {
     this->printChar();
     this->printInt();
@@ -94,7 +102,7 @@ void Convert::printOutput(void)
     this->printFloat();
 }
 
-void Convert::printChar(void)
+void ScalarConverter::printChar(void)
 {
     int i;
 
@@ -107,7 +115,8 @@ void Convert::printChar(void)
         std::cout << "char: '" << (char) i << "'" << std::endl;
 }
 
-void Convert::printInt() {
+void ScalarConverter::printInt()
+{
     double d;
 
     std::istringstream(this->_input) >> d;
@@ -118,7 +127,8 @@ void Convert::printInt() {
         std::cout << "int: " << (int) d << std::endl;
 }
 
-void Convert::printDouble(void) {
+void ScalarConverter::printDouble(void)
+{
     long double dd;
 
     std::istringstream(this->_input) >> dd;
@@ -132,7 +142,8 @@ void Convert::printDouble(void) {
         std::cout << "double: " << (double) dd << ".0" <<std::endl;
 }
 
-void Convert::printFloat(void) {
+void ScalarConverter::printFloat(void)
+{
     double d;
 
     std::istringstream(this->_input) >> d;

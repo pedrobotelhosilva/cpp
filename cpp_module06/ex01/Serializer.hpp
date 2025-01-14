@@ -12,14 +12,13 @@ struct Data
 
 class Serializer
 {
-public:
-    Serializer();
+    private:
+        Serializer();
+        Serializer& operator=(const Serializer& ref);
+        Serializer(const Serializer& ref);
 
-    Serializer& operator=(const Serializer& ref);
-    Serializer(const Serializer& ref);
-
-    static uintptr_t serialize(Data* ptr);
-    static Data* deserialize(uintptr_t raw);
-    
-    ~Serializer();
+    public:
+        static uintptr_t serialize(Data* ptr);
+        static Data* deserialize(uintptr_t raw);
+        ~Serializer();
 };
